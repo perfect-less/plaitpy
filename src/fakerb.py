@@ -186,7 +186,7 @@ def open_locale(locale):
 
         d = hashlib.md5(data).hexdigest()
 
-        doc = yaml.load(data)
+        doc = yaml.safe_load(data)
         setup_data(fname, doc[LOCALE]["faker"], data)
 
     LOCALE_DATA.clear()
@@ -220,7 +220,7 @@ def fetch(key, fallback_base, lookup=False):
             with readfile(filename) as f:
                 data = f.read()
 
-            doc = yaml.load(data)
+            doc = yaml.safe_load(data)
             setup_data(filename, doc, data)
         else:
             doc = OPENED_DATA[filename]
